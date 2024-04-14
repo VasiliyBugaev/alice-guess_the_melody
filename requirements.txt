@@ -1,0 +1,4 @@
+langdetect
+num2words
+translate
+transliterate

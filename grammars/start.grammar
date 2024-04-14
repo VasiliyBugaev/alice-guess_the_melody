@@ -1,0 +1,6 @@
+root:
+    $Body
+filler:
+    алиса
+$Body:
+    поехали
