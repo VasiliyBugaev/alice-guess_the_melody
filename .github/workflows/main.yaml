@@ -39,6 +39,7 @@ jobs:
         runtime: 'python312'
         memory: '128'
         entrypoint: 'main.handler'
+        environment: 'DUMMY=0'
         source: '.'
         exclude: '(grammars)'
         service_account: 'aje0j35m828ct5rtbur8'
