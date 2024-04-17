@@ -39,6 +39,7 @@ jobs:
         runtime: 'python312'
         memory: '128'
         entrypoint: 'main.handler'
+        environment: 'MONGODB_URI=0'
         source: '.'
         exclude: '(grammars)'
         description: 'guess the melody skill'
