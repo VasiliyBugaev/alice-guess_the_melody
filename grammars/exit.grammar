@@ -1,8 +1,11 @@
 root:
-    $Body
+    $Phrase
 
 filler:
     алиса | всё
+
+$Phrase:
+    $Body+ болтать?
 
 $Body:
     домой

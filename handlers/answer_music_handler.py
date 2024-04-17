@@ -17,12 +17,12 @@ ONE_MORE_SONG = ['Еще одну песню?', 'Едем дальше?', 'Хо�
 
 
 def handle(request, guesser: Guesser):
-    if request.get('nlu', {}).get('intents', {}).get('fail'):
+    if request.get('nlu', {}).get('intents', {}).get('fail') is not None:
         text = (random.choice(PASSED_TEXTS) + (f"Это песня {guesser.get_song()}, "
                                                   f"исполнитель {guesser.get_song_writer()} .") +
                 random.choice(ONE_MORE_SONG))
         return text, WorkingState.WAIT_FOR_NEXT
-    if request.get('nlu', {}).get('intents', {}).get('repeat'):
+    if request.get('nlu', {}).get('intents', {}).get('repeat') is not None:
         text, state, link, author, song = start_handler(request, with_text=False)
         return text, state, link
     answer = request.get('command', {})

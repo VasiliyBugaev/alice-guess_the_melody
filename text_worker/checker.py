@@ -36,9 +36,7 @@ def is_similar(word_from_phrase: str, word_from_answer: str) -> bool:
             return is_ru_digit or is_en_digit
     #check if answer word is english
     elif is_in_english_characters(word_from_answer):
-        print('is eng')
         if is_in_english_characters(word_from_phrase):
-            print('is eng2')
             return word_from_phrase in word_from_answer
         else:
             check_russian_transliteration = word_from_phrase in translit(word_from_answer, 'ru')
