@@ -1,6 +1,5 @@
 from guesser.guesser import Guesser
 from guesser.states import GuesserState, WorkingState
-from .start_handler import handle as start_handler
 import random
 
 DONT_UNDERSTAND_TEXTS = ['Не поняла, повторите, пожалуйста']
@@ -23,8 +22,7 @@ def handle(request, guesser: Guesser):
                 random.choice(ONE_MORE_SONG))
         return text, WorkingState.WAIT_FOR_NEXT
     if request.get('nlu', {}).get('intents', {}).get('repeat') is not None:
-        text, state, link, author, song = start_handler(request, with_text=False)
-        return text, state, link
+        return '', WorkingState.REPEAT
     answer = request.get('command', {})
     if answer:
         result = guesser.check_phrase(answer)

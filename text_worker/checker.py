@@ -69,4 +69,4 @@ def check_answer(player_phrase: str, answer: str) -> bool:
     check_word_in_answer = partial(check_word, words_in_answer)
     check_result = list(filter(check_word_in_answer, words_in_phrase))
     print(check_result)
-    return len(check_result) > CORRECTNESS_COEF * len(words_in_answer)
+    return len(check_result) >= CORRECTNESS_COEF * len(words_in_answer)

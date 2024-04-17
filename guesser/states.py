@@ -5,10 +5,11 @@ class WorkingState(Enum):
     BEFORE_INIT = 0
     INIT = 1
     WAIT_FOR_START = 2
-    LOAD_MUSIC = 3
-    WAIT_FOR_ANSWER = 4
-    WAIT_FOR_NEXT = 5
-    FINISH = 6
+    REPEAT = 3
+    LOAD_MUSIC = 4
+    WAIT_FOR_ANSWER = 5
+    WAIT_FOR_NEXT = 6
+    FINISH = 7
 
 
 class GuesserState(Enum):

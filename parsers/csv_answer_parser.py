@@ -34,3 +34,6 @@ class CsvAnswerParser:
     def get_audio(self):
         assert self.audio
         return self.audio
+
+    def clear_used_songs(self):
+        self.used = []

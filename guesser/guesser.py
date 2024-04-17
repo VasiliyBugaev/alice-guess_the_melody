@@ -17,7 +17,10 @@ class Guesser:
         if checker.check_answer(phrase, self.__song__):
             return GuesserState.CORRECT
         elif checker.check_answer(phrase, self.__song_writer__):
-            return GuesserState.ONLY_AUTHOR
+            if checker.check_answer(phrase, self.__song_writer__ + ' ' + self.__song__):
+                return GuesserState.CORRECT
+            else:
+                return GuesserState.ONLY_AUTHOR
         else:
             return GuesserState.INCORRECT
 

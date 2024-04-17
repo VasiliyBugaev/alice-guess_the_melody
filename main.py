@@ -19,22 +19,32 @@ def handler(event, context):
     end_session = 'false'
     response_body = {}
     if request.get('nlu', {}).get('intents', {}).get('exit'):
+        text = 'Жаль, но спасибо за игру, кожаные мешки'
+        current_state = states.WorkingState.FINISH
+        parser.clear_used_songs()
         end_session = 'true'
     elif current_state == states.WorkingState.BEFORE_INIT:
         text, current_state = intro_handler.handle(request)
-    elif current_state == states.WorkingState.INIT or current_state == states.WorkingState.WAIT_FOR_START:
-        parser.random_data()
+    elif current_state in [states.WorkingState.INIT, states.WorkingState.WAIT_FOR_START, states.WorkingState.REPEAT]:
+        if current_state != states.WorkingState.REPEAT:
+            parser.random_data()
         audio = parser.get_audio()
-        not_start = current_state == states.WorkingState.WAIT_FOR_START
-        text, current_state, audio_link = start_handler.handle(request, audio, dont_check_start=not_start)
+        not_start = current_state != states.WorkingState.INIT
+        with_intro = current_state != states.WorkingState.REPEAT
+        text, current_state, audio_link = start_handler.handle(request, audio,
+                                                               with_text=with_intro,
+                                                               dont_check_start=not_start)
         if audio_link:
             response_body['tts'] = audio_link
         song_writer, song = parser.get_answer()
         guess_checker.set_data(song_writer, song)
     elif current_state == states.WorkingState.LOAD_MUSIC:
         text, current_state = answer_music_handler.handle(request, guess_checker)
+        if current_state == states.WorkingState.REPEAT:
+            return handler(event, context)
     elif current_state == states.WorkingState.WAIT_FOR_NEXT:
-        text, current_state = next_handler.handle(request)
+        current_state = next_handler.handle(request)
+        return handler(event, context)
     else:
         text = ''
         end_session = True
