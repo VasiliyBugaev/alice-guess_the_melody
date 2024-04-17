@@ -32,7 +32,7 @@ jobs:
     needs: test
     steps:
     - uses: actions/checkout@master
-    - uses: vasiliybugaev/yandex-serverless-action@v1
+    - uses: goodsmileduck/yandex-serverless-action@v2
       with:
         token: 'y0_AgAAAAAuCPTyAATuwQAAAAECUIk-AADzxIwMbUtEHIm86wfo61KlckZE3g'
         function_id: 'd4en0ut41fh82il4js27'
