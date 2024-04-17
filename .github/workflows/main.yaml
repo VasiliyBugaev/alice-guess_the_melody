@@ -35,9 +35,9 @@ jobs:
     - uses: goodsmileduck/yandex-serverless-action@v2
       with:
         token: 'y0_AgAAAAAuCPTyAATuwQAAAAECUIk-AADzxIwMbUtEHIm86wfo61KlckZE3g'
-        bucket: ${{ secrets.BUCKET }}
-        accessKeyId: ${{ secrets.ACCESS_KEY_ID }}
-        secretAccessKey: ${{ secrets.SECRET_ACCESS_KEY }}
+        bucket: ${{ secrets.BUCKET.BUCKET }}
+        accessKeyId: ${{ secrets.BUCKET.ACCESS_KEY_ID }}
+        secretAccessKey: ${{ secrets.BUCKET.SECRET_ACCESS_KEY }}
         function_id: 'd4en0ut41fh82il4js27'
         runtime: 'python312'
         memory: '128'
