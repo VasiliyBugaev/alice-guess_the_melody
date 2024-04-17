@@ -35,7 +35,7 @@ jobs:
       with:
         token: 'y0_AgAAAAAuCPTyAATuwQAAAAECUIk-AADzxIwMbUtEHIm86wfo61KlckZE3g'
         function_id: 'd4en0ut41fh82il4js27'
-        runtime: 'python312-preview'
+        runtime: 'python312'
         memory: '128'
         entrypoint: 'main.handler'
         source: '.'
