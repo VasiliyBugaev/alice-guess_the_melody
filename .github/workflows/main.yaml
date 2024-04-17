@@ -42,4 +42,5 @@ jobs:
         environment: 'MONGODB_URI=0'
         source: '.'
         exclude: '(grammars)'
+        service_account: 'aje0j35m828ct5rtbur8'
         description: 'guess the melody skill'
