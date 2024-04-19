@@ -7,3 +7,5 @@ def handle(request):
         return WorkingState.WAIT_FOR_START
     elif request.get('nlu', {}).get('intents', {}).get('YANDEX.REJECT'):
         return WorkingState.FINISH
+    else:
+        return WorkingState.WAIT_FOR_NEXT

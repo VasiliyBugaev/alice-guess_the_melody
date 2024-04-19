@@ -18,7 +18,7 @@ def handler(event, context):
     #set default values for ening session
     end_session = 'false'
     response_body = {}
-    if request.get('nlu', {}).get('intents', {}).get('exit'):
+    if request.get('nlu', {}).get('intents', {}).get('exit') or current_state == states.WorkingState.FINISH:
         text = 'Жаль, но спасибо за игру, кожаные мешки'
         current_state = states.WorkingState.FINISH
         parser.clear_used_songs()
@@ -44,10 +44,12 @@ def handler(event, context):
             return handler(event, context)
     elif current_state == states.WorkingState.WAIT_FOR_NEXT:
         current_state = next_handler.handle(request)
-        return handler(event, context)
+        if current_state == states.WorkingState.WAIT_FOR_NEXT:
+            text = 'Я не понимаю, скажите поехали, или хватит'
+        else:
+            return handler(event, context)
     else:
-        text = ''
-        end_session = True
+        text = 'Я не понимаю, скажите поехали, или хватит'
 
     response_body['end_session'] = end_session
     response_body['text'] = text
@@ -86,7 +88,6 @@ def test_load_music():
         "version": "1.0",
     }
     response = handler(event=empty_request, context='')
-    print(response)
     assert response['response']['tts']
 
 
